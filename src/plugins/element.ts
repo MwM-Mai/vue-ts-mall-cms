@@ -7,10 +7,44 @@ import {
   ElFormItem,
   ElInput,
   ElCheckbox,
-  ElLink
+  ElLink,
+  ElContainer,
+  ElAside,
+  ElHeader,
+  ElMain,
+  ElRow,
+  ElCol,
+  ElMenu,
+  ElMenuItemGroup,
+  ElMenuItem,
+  ElSubmenu,
+  ElDropdown,
+  elDropdownMenu,
+  ElDropdownItem,
+  ElAvatar,
+  ElSelect,
+  ElOption,
+  ElDatePicker,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
+  ElTable,
+  ElTableColumn,
+  ElPagination,
+  ElConfigProvider,
+  ElImage,
+  ElDialog,
+  ElTree,
+  ElCard
 } from 'element-plus'
 
-import { UserFilled, Iphone } from '@element-plus/icons'
+import {
+  UserFilled,
+  Iphone,
+  Expand,
+  Fold,
+  RefreshRight,
+  Search
+} from '@element-plus/icons'
 
 // element 组件
 const components = [
@@ -22,11 +56,38 @@ const components = [
   ElFormItem,
   ElInput,
   ElCheckbox,
-  ElLink
+  ElLink,
+  ElContainer,
+  ElAside,
+  ElHeader,
+  ElMain,
+  ElRow,
+  ElCol,
+  ElMenu,
+  ElSubmenu,
+  ElMenuItemGroup,
+  ElMenuItem,
+  ElDropdown,
+  elDropdownMenu,
+  ElDropdownItem,
+  ElAvatar,
+  ElSelect,
+  ElOption,
+  ElDatePicker,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
+  ElTable,
+  ElTableColumn,
+  ElPagination,
+  ElConfigProvider,
+  ElImage,
+  ElDialog,
+  ElTree,
+  ElCard
 ]
 
 // 图标
-const IconComponents = [UserFilled, Iphone]
+const IconComponents = [UserFilled, Iphone, Expand, Fold, RefreshRight, Search]
 
 export default (app: any): void => {
   for (const component of components) {

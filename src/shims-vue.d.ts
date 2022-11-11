@@ -6,3 +6,11 @@ declare module '*.vue' {
 }
 
 declare module 'element-plus'
+
+declare module 'element-plus'
+
+// 由于 ts 不识别 .josn 文件 所有要声明 .josn 文件
+declare module '*.json' {
+  const value: any
+  export default value
+}

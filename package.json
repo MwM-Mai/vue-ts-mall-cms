@@ -11,8 +11,11 @@
     "prettier": "prettier --write ."
   },
   "dependencies": {
+    "@vue/compiler-sfc": "^3.2.41",
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
+    "dayjs": "^1.11.5",
+    "echarts": "^5.4.0",
     "element-plus": "^1.0.2-beta.28",
     "normalize.css": "^8.0.1",
     "vue": "^3.2.13",
@@ -49,5 +52,18 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "description": "## Project setup",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MwM-Mai/vue-ts-mall-cms.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MwM-Mai/vue-ts-mall-cms/issues"
+  },
+  "homepage": "https://github.com/MwM-Mai/vue-ts-mall-cms#readme"
 }

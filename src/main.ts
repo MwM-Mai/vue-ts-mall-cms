@@ -4,17 +4,25 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 // import './network/axios-demo'
+import { setupStore } from '@/store'
 
 import 'normalize.css'
 import './assets/css/index.less'
 
-import installElementPlus from './plugins/element'
+import { installElementPlus, registerProperties } from './plugins'
 
-import mwmRequest from './network'
+// import elementPlus from './plugins/element'
 
 const app = createApp(App)
 
+// app.use(elementPlus, { size: 'small', zIndex: 3000 })
+
 installElementPlus(app)
+
+// 调用定义全局属性$filter
+registerProperties(app)
+
+setupStore()
 
 app.use(store).use(router).mount('#app')
 

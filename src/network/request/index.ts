@@ -86,7 +86,7 @@ class MWMRequest {
     )
   }
 
-  request<T>(config: MWMRequestConfig<T>): Promise<T> {
+  request<T = any>(config: MWMRequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       // 如果 同一个实例不同请求有单独的 请求拦截 对数据处理
       if (config.interceptors?.requestInterceptor) {
@@ -119,19 +119,19 @@ class MWMRequest {
     })
   }
 
-  get<T>(config: MWMRequestConfig<T>): Promise<T> {
+  get<T = any>(config: MWMRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'GET' })
   }
 
-  post<T>(config: MWMRequestConfig<T>): Promise<T> {
+  post<T = any>(config: MWMRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'POST' })
   }
 
-  delete<T>(config: MWMRequestConfig<T>): Promise<T> {
+  delete<T = any>(config: MWMRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'DELETE' })
   }
 
-  patch<T>(config: MWMRequestConfig<T>): Promise<T> {
+  patch<T = any>(config: MWMRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'PATCH' })
   }
 }

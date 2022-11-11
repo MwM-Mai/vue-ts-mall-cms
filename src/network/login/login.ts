@@ -22,9 +22,9 @@ export function requestUserInfoById(id: string) {
   })
 }
 
-export function requestUserMenusByRoleId(id: string) {
+export function requestUserMenusByRoleId(id: number) {
   return mwmRequest.get<IDataType>({
-    url: LoginAPI.UserMenus + id + 'menu',
+    url: LoginAPI.UserMenus + id + '/menu',
     isShowLoading: false
   })
 }

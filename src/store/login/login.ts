@@ -6,7 +6,7 @@ import {
   requestUserMenusByRoleId
 } from '@/network/login/login'
 import localCache from '@/utils/cache'
-
+import { mapMenusRoutes, mapMenusToPermissions } from '@/utils/map-menus'
 import router from '@/router'
 
 // 模块login接口类型
@@ -20,9 +20,10 @@ const loginMudule: Module<ILoginSate, IRootState> = {
   namespaced: true,
   state: () => {
     return {
-      token: localCache.getCache('token') ?? '',
-      userInfo: localCache.getCache('userInfo') ?? {},
-      userMenus: localCache.getCache('userMenus') ?? []
+      token: '',
+      userInfo: {},
+      userMenus: [],
+      permissions: []
     }
   },
   mutations: {
@@ -36,10 +37,26 @@ const loginMudule: Module<ILoginSate, IRootState> = {
 
     changeUserMenus(state, userMenus: any) {
       state.userMenus = userMenus
+
+      // userMenus 映射到 routes 里面 来生成 动态路由
+      const routes = mapMenusRoutes(state.userMenus)
+      // console.log(routes)
+
+      // 将 routes 添加到 router.main.children
+      // 动态添加路由
+      routes.forEach((route) => {
+        router.addRoute('main', route)
+      })
+
+      // 获取用户按钮权限
+      const permissions = mapMenusToPermissions(userMenus)
+      // console.log(permissions)
+
+      state.permissions = permissions
     }
   },
   actions: {
-    async accountLoginAction({ commit }, payload: IAccount) {
+    async accountLoginAction({ commit, dispatch }, payload: IAccount) {
       // 1. 实现登录逻辑
       const loginResult = await accountLoginRequest(payload)
       const { id, token } = loginResult.data
@@ -60,6 +77,25 @@ const loginMudule: Module<ILoginSate, IRootState> = {
 
       // 4.跳到首页
       router.push('/main')
+
+      // 发送初始化请求(完整的role/department)
+      // dispatch('getInitialDataAction', null, { root: true })
+    },
+
+    loadLocalLogin({ commit, dispatch }) {
+      const token = localCache.getCache('token')
+      if (token) {
+        commit('changeToken', token)
+        dispatch('getInitialDataAction', null, { root: true })
+      }
+      const userInfo = localCache.getCache('userInfo')
+      if (token) {
+        commit('changeUserInfo', userInfo)
+      }
+      const userMenus = localCache.getCache('userMenus')
+      if (token) {
+        commit('changeUserMenus', userMenus)
+      }
     },
 
     phoneLoginAction({ commit }, payload: any) {
